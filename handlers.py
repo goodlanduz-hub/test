@@ -12,6 +12,7 @@ import config
 import db
 import keyboards as kb
 import texts
+from tags import lead_tags
 
 logger = logging.getLogger(__name__)
 
@@ -149,12 +150,15 @@ async def notify_admins(bot: Bot, user: User, name: str, rooms: str, phone: str)
     if user.username:
         telegram += f" (@{user.username})"
     row = db.get(user.id)
+    source = row["source"] if row else "direct"
     text = texts.LEAD_CARD.format(
         name=html.quote(name),
         rooms=rooms,
         phone=phone,
         telegram=telegram,
-        source=html.quote(row["source"] if row else "direct"),
+        source=html.quote(source),
+        # Har bir teg alohida <code> — CRM ga nusxalash uchun bosish kifoya
+        tags=", ".join(f"<code>{html.quote(tag)}</code>" for tag in lead_tags(source)),
     )
     try:
         await bot.send_message(config.ADMIN_CHAT_ID, text)

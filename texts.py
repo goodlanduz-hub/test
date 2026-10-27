@@ -44,6 +44,12 @@ ALREADY_DONE = (
 )
 STALE_BUTTON = "Qaytadan boshlash uchun /start bosing"
 
+# CRM teglari (manba bo'yicha)
+# Telegram Ads: t.me/Bot?start=ads_1 (zakup_ bilan boshlanmaydigan barcha havolalar)
+TAGS_TG_ADS = ["лид", "лид с телеграм ads", "telegram ads"]
+# Kanallardagi zakup: t.me/Bot?start=zakup_Vodiy_Bozor -> {channel} = "Vodiy Bozor"
+TAGS_ZAKUP = ["лид", "ТГ", "{channel}", "закупка рекламы"]
+
 # Adminlarga boradigan xabar
 LEAD_CARD = (
     "🆕 <b>Yangi ariza</b>\n\n"
@@ -51,5 +57,6 @@ LEAD_CARD = (
     "🏠 Xonadon: <b>{rooms}</b>\n"
     "📞 Telefon: <code>{phone}</code>\n"
     "💬 Telegram: {telegram}\n"
-    "📣 Manba: <code>{source}</code>"
+    "📣 Manba: <code>{source}</code>\n"
+    "🏷 Teglar: {tags}"
 )

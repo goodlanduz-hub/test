@@ -57,6 +57,24 @@ https://t.me/SizningBot?start=story_oktabr
 `start=` dan keyingi qism (lotin harflari, raqam, `_` va `-`, 64 belgigacha) arizada
 «Manba» sifatida ko'rinadi. Havolasiz kirganlar `direct` deb yoziladi.
 
+## Kanallardagi zakup va CRM teglari
+
+Boshqa kanallardan sotib olingan reklama uchun havola `zakup_` bilan boshlanadi,
+undan keyin kanal nomi (bo'sh joy o'rniga `_`):
+
+```
+https://t.me/SizningBot?start=zakup_Vodiy_Bozor
+```
+
+Har bir arizada CRM uchun teglar avtomatik chiqadi (admin xabarida va `/export` da):
+
+| Havola                     | Teglar                                          |
+|----------------------------|-------------------------------------------------|
+| `zakup_Vodiy_Bozor`        | лид, ТГ, Vodiy Bozor, закупка рекламы           |
+| boshqa hammasi (`ads_1`, havolasiz ham) | лид, лид с телеграм ads, telegram ads |
+
+Teglarni o'zgartirish: `texts.py` dagi `TAGS_TG_ADS` va `TAGS_ZAKUP`.
+
 ## Admin buyruqlari
 
 - `/stats` — nechta odam kirdi, nechtasi ariza qoldirdi, konversiya, har bir reklama bo'yicha

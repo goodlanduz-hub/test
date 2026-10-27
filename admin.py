@@ -8,6 +8,7 @@ from aiogram.types import BufferedInputFile, Message
 
 import config
 import db
+from tags import lead_tags
 
 # /id — sozlash paytida chat ID ni bilish uchun, hamma uchun ochiq
 public_router = Router()
@@ -48,13 +49,14 @@ async def cmd_export(message: Message) -> None:
     buf = io.StringIO()
     writer = csv.writer(buf)
     writer.writerow(
-        ["user_id", "username", "telegram_ism", "manba", "ism", "xonadon", "telefon",
+        ["user_id", "username", "telegram_ism", "manba", "teglar", "ism", "xonadon", "telefon",
          "kirgan_vaqt", "ariza_vaqt"]
     )
     for r in rows:
         writer.writerow(
-            [r["user_id"], r["username"] or "", r["tg_name"], r["source"], r["name"] or "",
-             r["rooms"] or "", r["phone"] or "", r["started_at"], r["completed_at"] or ""]
+            [r["user_id"], r["username"] or "", r["tg_name"], r["source"],
+             ", ".join(lead_tags(r["source"])), r["name"] or "", r["rooms"] or "",
+             r["phone"] or "", r["started_at"], r["completed_at"] or ""]
         )
     # utf-8-sig: Excel o'zbekcha/ruscha harflarni to'g'ri ochishi uchun
     data = buf.getvalue().encode("utf-8-sig")
